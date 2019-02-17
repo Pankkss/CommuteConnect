@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    {% for ride in rides %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            <div class="article-metadata">
+
+              <a class="mr-2" href="#">{{ ride.driver }}</a>
+
+              <small class="text-muted">{{ ride.departure }}</small>
+
+            </div>
+
+            <h2><a class="article-title" href="#">{{ ride.title }}</a></h2>
+
+            <p class="article-content">{{ ride.destination }}</p>
+
+          </div>
+
+        </article>
+
+    {% endfor %}
+
+{% endblock content %}
