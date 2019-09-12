@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory, render_template
 from flask_cors import CORS, cross_origin
 from flask_restful import Resource, Api
 from json import dumps
@@ -9,9 +9,14 @@ api = Api(app)
 
 CORS(app)
 
-@app.route("/")
-def hello():
-    return jsonify({'text':'Hello World!'})
+@app.route('/<path:path>', methods=['GET'])
+def static_proxy(path):
+  return send_from_directory('./', path)
+
+
+@app.route('/')
+def root():
+  return render_template('index.html')
 
 class Employees(Resource):
     def get(self):
