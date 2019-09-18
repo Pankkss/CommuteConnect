@@ -1,3 +1,10 @@
 export const environment = {
-  production: true
+  production: true,
+
+  locations: [
+    {Name: 'Dallas'},
+    {Name: 'Austin'},
+    {Name: 'San Antonio'},
+    {Name: 'Houston'},
+  ],
 };

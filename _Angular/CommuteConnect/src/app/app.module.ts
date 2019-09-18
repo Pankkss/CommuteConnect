@@ -1,18 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { SplashPageComponent } from './splash-page/splash-page.component';
+import { MatCardModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatInputModule } from "@angular/material";
+import { ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { MainComponent } from './main/main.component';
+import { LoginService } from "./login.service";
+import { SearchComponent } from './main/search/search.component';
+import { CreateRideComponent } from './main/create-ride/create-ride.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashPageComponent,
+    LoginComponent,
+    SignUpComponent,
+    RegisterUserComponent,
+    MainComponent,
+    SearchComponent,
+    CreateRideComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
