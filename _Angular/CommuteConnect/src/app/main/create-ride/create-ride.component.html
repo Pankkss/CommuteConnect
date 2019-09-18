@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4 text-center">
+      <mat-card>
+        <h4>Create a ride post</h4>
+        <hr>
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput type="text" [formControl]="Title">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field>
+          <mat-label>Your Company Name</mat-label>
+          <input matInput type="text"  [formControl]="Company">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Start City</mat-label>
+          <mat-select [formControl]="Start" required>
+            <mat-option *ngFor="let location of locations" [value]="location.Name">{{ location.Name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>End City</mat-label>
+          <mat-select [formControl]="End" required>
+            <mat-option *ngFor="let location of locations" [value]="location.Name">{{ location.Name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input [formControl]="Date" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <textarea matInput [formControl]="Details" placeholder="Give us some details!" ></textarea>
+        </mat-form-field>
+        <br>
+        <button class="btn" (click)="onSubmit()">Submit</button>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4 text-center">
+      <mat-card>
+        <h4>Sign up</h4>
+        <hr>
+        <mat-form-field>
+          <mat-label>Your Name</mat-label>
+          <input matInput type="text" [formControl]="Name">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field>
+          <mat-label>Your Company Name</mat-label>
+          <input matInput type="text"  [formControl]="Company">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="text" [formControl]="Email">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Home City</mat-label>
+          <mat-select [formControl]="Home" required>
+            <mat-option *ngFor="let location of this.locations" [value]="location.Name">{{ location.Name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <textarea matInput [formControl]="Bio" placeholder="Tell us about yourself" ></textarea>
+        </mat-form-field>
+        <br>
+        <button class="btn" (click)="onSubmit()">Submit</button>
+      </mat-card>
+    </div>
+  </div>
+</div>

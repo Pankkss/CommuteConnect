@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  baseURL: 'http://127.0.0.1:5002',
+
+  locations: [
+    {Name: 'Dallas'},
+    {Name: 'Austin'},
+    {Name: 'San Antonio'},
+    {Name: 'Houston'},
+  ],
 };
 
 /*
