@@ -15,6 +15,9 @@ import { MainComponent } from './main/main.component';
 import { LoginService } from "./login.service";
 import { SearchComponent } from './main/search/search.component';
 import { CreateRideComponent } from './main/create-ride/create-ride.component';
+import { SearchCardComponent } from './main/search/search-card/search-card.component';
+import { PostComponent } from './main/post/post.component';
+import { UserComponent } from './main/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,10 @@ import { CreateRideComponent } from './main/create-ride/create-ride.component';
     RegisterUserComponent,
     MainComponent,
     SearchComponent,
-    CreateRideComponent
+    CreateRideComponent,
+    SearchCardComponent,
+    PostComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

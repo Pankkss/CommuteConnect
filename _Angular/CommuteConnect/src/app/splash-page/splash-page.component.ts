@@ -28,4 +28,8 @@ export class SplashPageComponent implements OnInit {
     {Name: 'Houston'},
   ];
 
+  onSubmit() {
+    this.router.navigate['/main/search', this.start.value, this.destination.value];
+  }
+
 }

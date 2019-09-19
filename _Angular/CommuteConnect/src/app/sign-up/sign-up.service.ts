@@ -23,7 +23,7 @@ export class SignUpService {
       "name": name,
       "email" : email,
       "bio" : bio,
-      "id" : this.login.user.id,
+      "id" : this.login.user.userID,
       "company" : company,
       "homeCity" : home,
       "token" : this.login.user.accessToken

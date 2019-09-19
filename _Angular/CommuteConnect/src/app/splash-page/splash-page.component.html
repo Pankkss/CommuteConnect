@@ -1,21 +1,21 @@
 <div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-1 text-left">
-        <h3>CC</h3>
+  <nav class="navbar navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="['/main/search']">{{ this.login.user.company ? this.login.user.company : 'Commute Connect'}}</a>
       </div>
-      <div class="col-lg-10 text-center">
-        <h1>Commute Connect</h1>
-      </div>
-      <div class="col-lg-1">
-        <h3 (click)="login.submitLogin()" >Login</h3>
-      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['/main/search','recent','recent']" routerLinkActive="router-link-active" >Search</a></li>
+        <li><a (click)="login.submitLogin()">Sign up</a></li>
+        <li><a (click)="login.submitLogin()" routerLinkActive="router-link-active" >Login</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <mat-card>
+        <mat-card class="form">
+          <h4>Meet other entrepreneurs and save on travel while traveling through Texas</h4>
           <mat-form-field>
             <mat-label>Start From</mat-label>
             <mat-select [formControl]="start" required>
@@ -35,6 +35,8 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+          <br>
+          <button [routerLink]="['/main/search',this.start.value,this.destination.value]" mat-button>Submit</button>
         </mat-card>
       </div>
     </div>

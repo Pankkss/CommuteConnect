@@ -6,14 +6,16 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import { SearchComponent } from './main/search/search.component';
 import { CreateRideComponent } from './main/create-ride/create-ride.component';
+import { UserComponent } from './main/user/user.component';
 
 
 const routes: Routes = [
   { path: '', component: SplashPageComponent },
   { path: 'main', component: MainComponent, children: [
     { path: 'signup', component: SignUpComponent },
-    { path: 'search', component: SearchComponent },
+    { path: 'search/:start/:end', component: SearchComponent },
     { path: 'CreateRide', component: CreateRideComponent },
+    { path: 'User/:id', component: UserComponent },
 
   ]}
 ];

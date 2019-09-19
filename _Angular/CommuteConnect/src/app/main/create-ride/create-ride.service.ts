@@ -17,15 +17,15 @@ export class CreateRideService {
 
     let url = environment.baseURL + '/AddPost';
 
-
+    console.log('user=',this.login.user);
     this.http.post(url, {
-      "userID": this.login.user.id,
+      "userID": this.login.user.userID,
       "details" : details,
       "start" : start,
       "end" : end,
       "year": date.getFullYear(),
       "month": date.getMonth(),
-      "day": date.getDate,
+      "day": date.getDate(),
       "name": title,
       "company" : company
     }).subscribe(res => {
