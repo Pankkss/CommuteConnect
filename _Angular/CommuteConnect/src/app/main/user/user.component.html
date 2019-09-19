@@ -1,4 +1,4 @@
-<div class="container" style="margin-top:30px">
+<div class="container main" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
       <h2>{{this.user.name}}</h2>
@@ -12,7 +12,7 @@
         <li>{{this.user.homeCity}}, TX</li>
       </ul>
       <h3>Some Links</h3>
-      <ul class="nav nav-pills flex-column">
+      <ul class="nav nav-pills nav-stacked">
         <li class="nav-item">
           <a class="nav-link active" href="#">Website</a>
         </li>
@@ -34,7 +34,7 @@
        </p>
       <br>
       <h2>Recent Connects</h2>
-      <ul class="nav nav-pills flex-column">
+      <ul class="nav nav-pills nav-stacked">
         <li class="nav-item">
           <a class="nav-link" href="#">Bandit Tech</a>
         </li>
@@ -53,4 +53,10 @@
       <p><a href="file:///F:/myHack/CommuteConnect/CommuteConnect/templates/fakepost.html">Austin - Houston 2/23</a></p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>About {{this.user.company}}:</h2>
+    </div>
+  </div>
 </div>
+
