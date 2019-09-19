@@ -36,7 +36,7 @@ export class CreateRideComponent implements OnInit {
 
   onSubmit() {
     let title = this.Title.value;
-    let company = this.Company.value;
+    let company = this.login.user.company;
     let start = this.Start.value;
     let end = this.End.value;
     let details = this.Details.value;

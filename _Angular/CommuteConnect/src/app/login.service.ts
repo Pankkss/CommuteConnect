@@ -61,6 +61,12 @@ export class LoginService {
       });
   }
 
+  SignOut() {
+    FB.logout();
+    this.user = null;
+    this.router.navigate['/'];
+  }
+
   CheckRegistration(res) {
     const url = environment.baseURL + '/GetUser/' + res.authResponse.userID;
     this.http.get<User>(url).subscribe(response => {
@@ -77,7 +83,7 @@ export class LoginService {
       else {
         this.user = response as User;
         this.ngzone.run(() => {
-          this.router.navigate(['main/search']);
+          this.router.navigate(['main/search/recent/recent']);
 
         })
       };
