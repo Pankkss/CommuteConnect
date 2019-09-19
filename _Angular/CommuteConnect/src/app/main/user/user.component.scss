@@ -1,7 +1,12 @@
 .image {
-  background-color: white;
+  background-color: #E5E5E5;
 }
 
-div.container {
+div.container.main {
   margin-top: 0 !important;
+  min-height: 100vh;
+}
+
+.main {
+  background-color: white;
 }
