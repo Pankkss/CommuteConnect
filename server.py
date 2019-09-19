@@ -8,33 +8,37 @@ import os, datetime
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'crud.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'CommuteConnect.sqlite')
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
 
 class User(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(80))
+  id = db.Column(db.Integer, primary_key=True, unique = True)
+  userID = db.Column(db.Integer, unique = True)
   bio = db.Column(db.Text)
   email = db.Column(db.String(120), unique = True)
   company = db.Column(db.String(120))
   homeCity = db.Column(db.String(120))
   token = db.Column(db.Integer)
+  name = db.Column(db.String(200))
 
-  def __init__(self, id, name, bio, email, company, homeCity, token):
-    self.id = id
-    self.name = name
-    self.bio = bio
+
+  def __init__(self, userID, bio, email, company, homeCity, token, name):
+    self.id = None
+    self.userID= userID
+    self.bio = bio  
     self.email = email
     self.company = company
     self.homeCity = homeCity
     self.token = token
+    self.name = name
+
 
 class UserSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('name', 'email', 'id', 'bio', 'company', 'homeCity')
+        fields = ('userID', 'bio', 'email', 'company', 'homeCity','name')
 
 
 user_schema = UserSchema()
@@ -47,11 +51,11 @@ class Post(db.Model):
   start = db.Column(db.String(200))
   end = db.Column(db.String(200))
   date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-  name = db.Column(db.String(200)),
+  name = db.Column(db.String(200))
   company = db.Column(db.String(200))
 
 
-  def __init__(self, userID, details, start, end, date, name, company):
+  def __init__(self, userID, details, start, end, date, name,company):
     self.id=None
     self.userID = userID
     self.details = details
@@ -64,34 +68,43 @@ class Post(db.Model):
 class PostSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('userID','details', 'start', 'end', 'date', 'name', 'company')
+        fields = ('id','userID','details', 'start', 'end', 'date', 'name', 'company')
 
 post_schema = PostSchema()
-post_schema = PostSchema(many=True)
+posts_schema = PostSchema(many=True)
+
+class Rides(db.Model):
+  id=db.Column(db.Integer, primary_key = True)
+  owner = db.Column(db.String(200))
+  ownerID = db.Column(db.Integer)
+  rider = db.Column(db.String(200))
+  riderID = db.Column(db.Integer)
+  date = db.Column(db.DateTime)
+  start = db.Column(db.String(200))
+  end = db.Column(db.String(200))
+
+  def __init__(self, owner, ownerID, rider, riderID, date, start, end):
+    self.id = None
+    self.owner = owner
+    self.ownerID = ownerID
+    self.rider = rider
+    self.riderID = riderID
+    self.date = date
+    self.start = start
+    self.end = end
+
+class RideSchema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ('id','owner', 'ownerID', 'rider', 'riderID', 'date', 'start', 'end')
+
+Ride_schema = RideSchema()
+Ride_schema = RideSchema(many=True)
 
 @app.route('/test', methods=['GET'])
 def test():
   return jsonify('TEST')
 
-
-@app.route('/AddUser', methods=["Post"])
-def add_user():
-  name = request.json['name']
-  id = request.json['id']
-  bio = request.json['bio']
-  email = request.json['email']
-  company = request.json['company']
-  homeCity = request.json['homeCity']
-  token = request.json['token']
-
-  new_user = User(id, name, bio, email, company, homeCity, token)
-
-  db.session.add(new_user)
-  db.session.commit()
-
-  response = jsonify('Success')
-  response.status_code = 200
-  return response
 
 @app.route('/AddPost', methods=["POST"])
 def add_post():
@@ -103,8 +116,7 @@ def add_post():
   name = request.json['name']
   company = request.json['company']
 
-
-  newPost = Post(userID, details, start, end, date, name, company)
+  newPost = Post(userID, details, start, end, date,name, company)
 
   db.session.add(newPost)
   db.session.commit()
@@ -116,8 +128,42 @@ def add_post():
 @app.route('/GetAllPosts', methods=["GET"])
 def get_post():
   all_posts = Post.query.all()
-  results = post_schema.dump(all_posts)
+  results = posts_schema.dump(all_posts)
+  print(results)
+
   return jsonify(results)
+
+@app.route('/Post/GetRecent', methods=["GET"])
+def get_recent_posts():
+  recent = Post.query.all()
+  results = posts_schema.dump(recent)
+  return jsonify(results)
+
+@app.route('/Post/Search/<start>/<end>', methods=["GET"])
+def search_posts(start, end):
+  all_posts = Post.query.filter_by(start=start, end= end)
+  results = posts_schema.dump(all_posts)
+  return jsonify(results)
+
+
+@app.route('/AddUser', methods=["Post"])
+def add_user():
+  userID = request.json['id']
+  bio = request.json['bio']
+  email = request.json['email']
+  company = request.json['company']
+  homeCity = request.json['homeCity']
+  token = request.json['token']
+  name = request.json['name']
+
+  new_user = User(userID, bio, email, company, homeCity, token, name)
+
+  db.session.add(new_user)
+  db.session.commit()
+
+  response = jsonify('Success')
+  response.status_code = 200
+  return response
 
 @app.route('/GetAllUsers', methods=["GET"])
 def get_users():
@@ -127,8 +173,10 @@ def get_users():
 
 @app.route('/GetUser/<id>', methods=["GET"])
 def get_user(id):
-  user = User.query.get(id)
+  user = User.query.filter_by(userID=id).first()
   return user_schema.jsonify(user)
+
+
 
 
 if __name__ == '__main__':

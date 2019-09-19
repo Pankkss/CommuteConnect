@@ -11,7 +11,7 @@
         <a class="navbar-brand" href="#">{{ this.login.user.company ? this.login.user.company : 'Commute Connect'}}</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/main/search']" routerLinkActive="router-link-active" >Search</a></li>
+        <li><a [routerLink]="['/main/search','recent','recent']" routerLinkActive="router-link-active" >Search</a></li>
         <li><a href="#">Your Rides</a></li>
         <li><a [routerLink]="['/main/CreateRide']" routerLinkActive="router-link-active" >Create a ride</a></li>
       </ul>

@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
     let name = this.Name.value;
     let email = this.Email.value;
 
-    this.SignUp.AddUser(company, home, bio, name, email).subscribe(res => {
+    this.SignUp.AddUser(company, bio, name, email, home).subscribe(res => {
       if (this.login.user.firstLogin) {
         this.router.navigate(['main/CreateRide']);
       }

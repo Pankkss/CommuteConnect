@@ -26,7 +26,7 @@ export class CreateRideComponent implements OnInit {
   Date = new FormControl('', [Validators.required]);
   Details = new FormControl('', [Validators.required]);
 
-  locations: [
+  locations = [
     {Name: 'Dallas'},
     {Name: 'Austin'},
     {Name: 'San Antonio'},

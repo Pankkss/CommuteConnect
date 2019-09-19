@@ -4,7 +4,6 @@ import { AsyncSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from "./models/user";
 import { Router } from '@angular/router';
-import { ShowNavService } from './show-nav.service';
 declare var FB: any;
 
 @Injectable({
@@ -67,7 +66,7 @@ export class LoginService {
     this.http.get<User>(url).subscribe(response => {
       if (Object.keys(response).length === 0) {
         //register
-        this.user.id = res.authResponse.userID;
+        this.user.userID = res.authResponse.userID;
         this.user.accessToken = res.authResponse.accessToken;
         console.log('no user');
         this.ngzone.run(() => {
@@ -76,7 +75,7 @@ export class LoginService {
         })
       }
       else {
-        this.user = response;
+        this.user = response as User;
         this.ngzone.run(() => {
           this.router.navigate(['main/search']);
 

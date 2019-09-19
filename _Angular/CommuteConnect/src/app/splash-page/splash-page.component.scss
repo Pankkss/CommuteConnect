@@ -1,8 +1,46 @@
 .jumbotron {
-
+  padding-top: 0;
+  margin-bottom: 0;
   height: 100vh;
   background: url(../../assets/Images/arizona-asphalt-beautiful-490466.jpg);
   background-size: auto;
   background-repeat: no-repeat;
   background-color: black;
 }
+
+.form {
+  margin-top: 100px;
+  opacity: .9;
+  width: 400px;
+}
+
+.container {
+  margin-right: 0;
+  margin-left: 0;
+  margin-left: 40px;
+}
+
+.nav {
+  background-color: none ;
+  border: none;
+}
+
+.nav.navbar-nav li a{
+  color: white;
+  font-size: 18px;
+}
+
+.nav.navbar-nav li a:hover, .nav.navbar-nav li a:active {
+  cursor: pointer;
+  color: black;
+}
+
+a.navbar-brand {
+  color: white;
+  font-size: 22px;
+}
+
+a.navbar-brand:hover, a.navbar-brand:active {
+  cursor: pointer;
+}
+
