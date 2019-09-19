@@ -2,7 +2,7 @@
   <nav class="navbar navbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" [routerLink]="['/main/search']">{{ this.login.user.company ? this.login.user.company : 'Commute Connect'}}</a>
+        <a class="navbar-brand" [routerLink]="['/main/search']">{{'Commute Connect'}}</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/main/search','recent','recent']" routerLinkActive="router-link-active" >Search</a></li>

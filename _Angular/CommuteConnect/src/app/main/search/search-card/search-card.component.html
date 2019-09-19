@@ -1,9 +1,14 @@
-<mat-card>
-  <mat-card-title>{{ this.ride.name }}</mat-card-title>
-  <img  [routerLink]="['/main/User', this.ride.userID]" routerLinkActive="router-link-active"   src={{this.url}} mat-card-lg-image>
-  <mat-card-content>
-    <h4>{{this.ride.start}}<span class="glyphicon glyphicon-arrow-right"></span>{{this.ride.end}}</h4>
-    <h4>{{this.ride.date | date: 'dd/MM/yyyy' }}</h4>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title class="title">{{ this.ride.name }}</mat-card-title>
+  </mat-card-header>
+  <img id="image" [routerLink]="['/main/User', this.ride.userID]" routerLinkActive="router-link-active"   src={{this.url}} mat-card-image>
+  <mat-card-content class="content text-center">
+    <h4>{{this.ride.start}} &nbsp; <span class="glyphicon glyphicon-arrow-right"></span> &nbsp; {{this.ride.end}}</h4>
+    <h4>{{this.ride.date | date: 'MM/dd/yyyy' }}</h4>
     <p>{{this.ride.details}}</p>
   </mat-card-content>
+  <mat-card-actions class="text-center">
+    <button>Request this ride</button>
+  </mat-card-actions>
 </mat-card>

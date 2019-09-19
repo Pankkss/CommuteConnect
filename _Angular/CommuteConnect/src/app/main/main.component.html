@@ -8,18 +8,30 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">{{ this.login.user.company ? this.login.user.company : 'Commute Connect'}}</a>
+        <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active"  >{{ this.login.user.company ? this.login.user.company : 'Commute Connect'}}</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a [routerLink]="['/main/search','recent','recent']" routerLinkActive="router-link-active" >Search</a></li>
         <li><a href="#">Your Rides</a></li>
         <li><a [routerLink]="['/main/CreateRide']" routerLinkActive="router-link-active" >Create a ride</a></li>
       </ul>
+      <ul *ngIf="this.login.user.userID; else signIn" class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['/main/User', this.login.user.userID]" routerLinkActive="router-link-active" >Profile</a></li>
+        <li><a (click)="login.SignOut()" routerLinkActive="router-link-active" >Sign Out</a></li>
+      </ul>
+      <ng-template #signIn>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a (click)="login.submitLogin()">Sign up</a></li>
+          <li><a (click)="login.submitLogin()" routerLinkActive="router-link-active" >Login</a></li>
+        </ul>
+      </ng-template>
     </div>
   </nav>
 </div>
 
-<router-outlet></router-outlet>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>CommuteConnect</p>
