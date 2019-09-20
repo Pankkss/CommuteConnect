@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  baseURL: 'https://0.0.0.0:5002',
+  baseURL: 'http://52.89.110.122:5002',
 
   locations: [
     {Name: 'Dallas'},
