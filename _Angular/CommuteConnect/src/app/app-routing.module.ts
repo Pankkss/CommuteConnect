@@ -17,7 +17,8 @@ const routes: Routes = [
     { path: 'CreateRide', component: CreateRideComponent },
     { path: 'User/:id', component: UserComponent },
 
-  ]}
+  ]},
+  { path: '*', component: SplashPageComponent },
 ];
 
 @NgModule({

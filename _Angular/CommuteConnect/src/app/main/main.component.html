@@ -12,12 +12,12 @@
       </div>
       <ul class="nav navbar-nav">
         <li><a [routerLink]="['/main/search','recent','recent']" routerLinkActive="router-link-active" >Search</a></li>
-        <li><a href="#">Your Rides</a></li>
+        <li><a>Your Rides</a></li>
         <li><a [routerLink]="['/main/CreateRide']" routerLinkActive="router-link-active" >Create a ride</a></li>
       </ul>
       <ul *ngIf="this.login.user.userID; else signIn" class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/main/User', this.login.user.userID]" routerLinkActive="router-link-active" >Profile</a></li>
-        <li><a (click)="login.SignOut()" routerLinkActive="router-link-active" >Sign Out</a></li>
+        <li><a (click)="this.login.SignOut()" routerLinkActive="router-link-active" >Sign Out</a></li>
       </ul>
       <ng-template #signIn>
         <ul class="nav navbar-nav navbar-right">

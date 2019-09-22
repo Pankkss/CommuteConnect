@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { FormControl, Validators } from "@angular/forms";
 import { LoginService } from 'src/app/login.service';
 import { CreateRideService } from './create-ride.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-ride',
@@ -12,7 +13,8 @@ import { CreateRideService } from './create-ride.service';
 export class CreateRideComponent implements OnInit {
 
   constructor(public login: LoginService,
-              private createRide: CreateRideService,) { }
+              private createRide: CreateRideService,
+              private router:Router,) { }
 
   ngOnInit() {
   }
@@ -43,6 +45,7 @@ export class CreateRideComponent implements OnInit {
     let date = new Date(this.Date.value);
     this.createRide.AddRide(title,company,start,end,details, date).subscribe( res => {
         console.log('Success');
+    this.router.navigate(['/main/search/recent/recent']);
     });
 
 

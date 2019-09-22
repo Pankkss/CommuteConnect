@@ -12,3 +12,7 @@ nav.navbar.navbar-inverse {
 div.jumbotron.text-center {
   background-color: #e9ecef;
 }
+
+li > a:hover, li > a:active{
+  cursor: pointer;
+}

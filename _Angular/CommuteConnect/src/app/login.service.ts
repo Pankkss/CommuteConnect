@@ -63,8 +63,9 @@ export class LoginService {
 
   SignOut() {
     FB.logout();
-    this.user = null;
+    console.log(this.user);
     this.router.navigate['/'];
+    this.user = new User();
   }
 
   CheckRegistration(res) {
